@@ -1,5 +1,6 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import TimeCheckList from "../component/TimeCheckList";
 import {
     useFonts,
     Cabin_700Bold,
@@ -18,45 +19,7 @@ export default function Main() {
     }
     return (
         <LinearGradient colors={["#3E444A", "#08040A"]} style={styles.background}>
-            <LinearGradient
-                start={[0.5, 1]}
-                end={[0.5, 0]}
-                colors={["#3E444A", "#1C1E22"]}
-                style={{ borderRadius: 12 }}
-            >
-                <LinearGradient
-                    start={[1, 1]}
-                    end={[0, 0]}
-                    colors={["#323232", "#696969", "#6C6C6C"]}
-                    style={styles.button}
-                >
-                    <Text style={styles.text1}>
-                        Allows “Maps” to acces your location while you are using the app?
-                    </Text>
-                    <Text style={styles.text2}>
-                        Your current location will be displayed on the map and used for
-                        directions, nearby search results, and estimated travel times.
-                    </Text>
-                    <View style={styles.hr}></View>
-                    <Text style={styles.text3}>Allow While Using App</Text>
-                    <View style={styles.hr}></View>
-                    <Text style={styles.text3}>Allow Once</Text>
-                    <View style={styles.hr}></View>
-                    <Text style={styles.text3}>Don't Allow</Text>
-                </LinearGradient>
-            </LinearGradient>
-            {/* Wallet 아이콘 이미지 */}
-            <Image
-                source={require("../assets/wallet.png")}
-                style={{
-                    height: 200,
-                    width: 200,
-                    marginTop: -20,
-                    marginBottom: -50,
-                    resizeMode: "contain",
-                }}
-            />
-            <Text style={styles.text}>Tap to connect Phantom wallet</Text>
+            <TimeCheckList/>
         </LinearGradient>
     );
 
