@@ -1,9 +1,10 @@
 import {Text, View, TextInput, StyleSheet, Button} from "react-native";
 import {LinearGradient} from "expo-linear-gradient";
 import {useState,useEffect,useRef} from "react";
-import Sound from 'react-native-sound';
+import { Audio } from 'expo-av';
 
 export default function TimeCheckList(){
+
     function useInterval(callback, delay) {
         const savedCallback = useRef(); // 최근에 들어온 callback을 저장할 ref를 하나 만든다.
 
@@ -29,17 +30,35 @@ export default function TimeCheckList(){
     const [second,setSecond] = useState(0);
     const [isPlay, setIsPlay] = useState(false);
     const [timerInterval, setTimerInterval] = useState(0);
-    const path = "../assets/test.mp3"
-    let music = new Sound(path, null, (error) => {
-        if (error) { console.log('play failed') }
-    })
+    const [sound,setSound]=useState();
+
+    async function playSound() {
+        console.log('Loading Sound');
+        const { sound } = await Audio.Sound.createAsync( require('../assets/test.mp3')
+        );
+        // @ts-ignore
+        setSound(sound);
+
+        console.log('Playing Sound');
+        await sound.playAsync();
+    }
+    useEffect(() => {
+        return sound
+            ? () => {
+                console.log('Unloading Sound');
+                // @ts-ignore
+                sound.unloadAsync();
+            }
+            : undefined;
+    }, [sound]);
     const time =  () =>{
 
         if(second>5){
             /**
              * 소리 나게하기
              */
-            music.play();
+            // @ts-ignore
+            playSound();
             setSecond(0);
         }else{
 
