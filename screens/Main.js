@@ -1,6 +1,7 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import TimeCheckList from "../component/TimeCheckList";
+import Head from "../component/Head";
 import {
     useFonts,
     Cabin_700Bold,
@@ -19,6 +20,7 @@ export default function Main() {
     }
     return (
         <LinearGradient colors={["#3E444A", "#08040A"]} style={styles.background}>
+            <Head/>
             <TimeCheckList/>
         </LinearGradient>
     );
