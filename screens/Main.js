@@ -1,6 +1,7 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import TimeCheckList from "../component/TimeCheckList";
+import {SafeAreaProvider,SafeAreaView} from 'react-native-safe-area-context';
 import Head from "../component/Head";
 import {
     useFonts,
@@ -19,10 +20,12 @@ export default function Main() {
         return null;
     }
     return (
-        <LinearGradient colors={["#3E444A", "#08040A"]} style={styles.background}>
-            <Head/>
-            <TimeCheckList/>
-        </LinearGradient>
+        <SafeAreaProvider>
+            <SafeAreaView colors={["#3E444A", "#08040A"]} style={styles.background}>
+                <Head/>
+                <TimeCheckList/>
+            </SafeAreaView>
+        </SafeAreaProvider>
     );
 
 }
