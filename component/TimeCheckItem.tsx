@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Text, View, TextInput, StyleSheet, Button} from "react-native";
+import {Text, View, TextInput, StyleSheet, Button, TouchableOpacity, Image} from "react-native";
 import {Audio} from "expo-av";
 
 function TimeCheckItem(props) {
@@ -85,17 +85,27 @@ function TimeCheckItem(props) {
         },
         isPlay ? 1000 : null
     );
-
+    const onButtonStart = function(){
+        return btnStatus ? startTimeCheck() : stopTimeCheck();
+    }
     return (
         <View style={styles.container}>
             <Text >qw</Text>
-            <TextInput
-                style={styles.input}
+            <View style={styles.buttonStyle}>
+                <TextInput
+                    style={styles.input}
 
-                value={String(second)}
-            />
-            {btnStatus ?<Button title={"시작"} onPress={startTimeCheck}></Button>: <Button title={"정지"} onPress={stopTimeCheck}></Button>}
+                    value={String(second)}
+                />
+            </View>
+            <TouchableOpacity activeOpacity={0.5} onPress={onButtonStart}>
+            {btnStatus ?<Image source={require('../assets/images/start.png')}  style={styles.image}></Image>: <Image source={require('../assets/images/stop.png')}  style={styles.image}></Image>}
+            </TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.5}>
 
+                    <Image source={require('../assets/images/music.png')} style={styles.image}></Image>
+
+            </TouchableOpacity>
         </View>
     );
 }
@@ -110,9 +120,21 @@ const styles = StyleSheet.create({
         padding:8,
         marginTop:4
     },
+    buttonStyle:{
+        alignItems:'center',
+        justifyContent:'center',
+        width:48,
+        height:48,
+        backgroundColor:'white',
+        borderRadius:24
+    },
+    image:{
+        width:48,
+        height:48
+    },
     input: {
-        margin: 12,
-        padding: 10,
+        fontSize:32,
+    fontWeight: "bold"
     }
 });
 export default TimeCheckItem;

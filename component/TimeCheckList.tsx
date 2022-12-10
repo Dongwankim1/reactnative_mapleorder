@@ -15,16 +15,12 @@ export default function TimeCheckList(){
 
 
     return(
-        <LinearGradient
-            start={[1, 1]}
-            end={[0, 0]}
-            colors={["#323232", "#696969", "#6C6C6C"]}
-            style={styles.container}
+        <View
         >
             <TimeCheckItem/>
 
 
-        </LinearGradient>
+        </View>
 
     )
 }
