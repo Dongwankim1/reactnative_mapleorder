@@ -1,15 +1,20 @@
 import React from 'react';
 import {Button, StatusBar, StyleSheet, View, Text, Image, TouchableOpacity} from "react-native";
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-function Head(props) {
+function Head({timeItem,setTimeItem}) {
     const {top} = useSafeAreaInsets();
+
+    const addTimeItem = function(){
+        setTimeItem([...timeItem,{id:(timeItem.length+1)}])
+    }
+
     return (
         <>
         <View style={[styles.statusBarPlaceholder,{height:top}]}></View>
         <View style={styles.block}>
             <StatusBar backgroundColor={"#3E444A"}/>
             <Text style={styles.text}>MapleOrdersss</Text>
-            <TouchableOpacity activeOpacity={0.5}>
+            <TouchableOpacity activeOpacity={0.5} onPress={addTimeItem}>
                 <View style={styles.buttonStyle}>
                     <Image source={require('../assets/images/add_white.png')} style={styles.image}></Image>
                 </View>
