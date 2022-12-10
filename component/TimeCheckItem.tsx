@@ -107,7 +107,7 @@ function TimeCheckItem({id,onRemove}) {
             <TouchableOpacity activeOpacity={0.5}>
                     <Image source={require('../assets/images/music.png')} style={styles.image}></Image>
             </TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.5} onPress={onRemove}>
+                <TouchableOpacity activeOpacity={0.5} onPress={()=>onRemove(id)}>
                     <Image source={require('../assets/images/close.png')} style={styles.image}></Image>
                 </TouchableOpacity>
             </View>

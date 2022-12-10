@@ -9,6 +9,7 @@ export default function App() {
   ])
 
   const onRemove = id =>{
+    console.log(id);
     const nextTimeItme = timeItem.filter(v => v.id !=id);
     setTimeItem(nextTimeItme)
   }
