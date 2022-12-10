@@ -1,47 +1,33 @@
-import {Text, View, TextInput, StyleSheet, Button} from "react-native";
-import {LinearGradient} from "expo-linear-gradient";
+import {FlatList, View,Text, StyleSheet} from "react-native";
 import {useState,useEffect,useRef} from "react";
-import { Audio } from 'expo-av';
 import TimeCheckItem from "./TimeCheckItem";
 
-export default function TimeCheckList(){
+export default function TimeCheckList({timeItem,onRemove}){
 
+    useEffect(()=>{
+        console.log(timeItem);
+    },[])
 
-
-    const [status, setStatus] = useState({count:0,id:0});
-
-
-
-
+    const renderItem = ({ item }) => (
+        <TimeCheckItem id={item.id} onRemove={onRemove}/>
+    );
 
     return(
-        <View
-        >
-            <TimeCheckItem/>
-
-
-        </View>
-
+        <FlatList style={styles.list}
+            data={timeItem}
+            renderItem={renderItem}
+                  keyExtractor={item=>item.id.toString()}
+        />
     )
 }
 
 
 const styles = StyleSheet.create({
-    container: {
-        justifyContent: "space-between",
-        backgroundColor: '#ECF0F1',
-        alignItems: 'center', //Centered vertically
-        flexDirection: "row",
-        flexWrap: "wrap",
-        padding:8,
-        marginTop:4,
-        flex:1
-
+    list:{
+        flex:1,
     },
-    input: {
-        height: 20,
-        margin: 12,
-        borderWidth: 1,
-        padding: 10,
+    container:{
+        height:200,
     }
+
 });

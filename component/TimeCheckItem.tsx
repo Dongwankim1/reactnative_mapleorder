@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {Text, View, TextInput, StyleSheet, Button, TouchableOpacity, Image} from "react-native";
 import {Audio} from "expo-av";
 
-function TimeCheckItem(props) {
+function TimeCheckItem({id,onRemove}) {
     function useInterval(callback, delay) {
         const savedCallback = useRef(); // 최근에 들어온 callback을 저장할 ref를 하나 만든다.
 
@@ -88,9 +88,10 @@ function TimeCheckItem(props) {
     const onButtonStart = function(){
         return btnStatus ? startTimeCheck() : stopTimeCheck();
     }
+
     return (
         <View style={styles.container}>
-            <Text >qw</Text>
+
             <View style={styles.buttonStyle}>
                 <TextInput
                     style={styles.input}
@@ -98,14 +99,18 @@ function TimeCheckItem(props) {
                     value={String(second)}
                 />
             </View>
+            <Text >노래</Text>
+            <View style={styles.btnStyle}>
             <TouchableOpacity activeOpacity={0.5} onPress={onButtonStart}>
             {btnStatus ?<Image source={require('../assets/images/start.png')}  style={styles.image}></Image>: <Image source={require('../assets/images/stop.png')}  style={styles.image}></Image>}
             </TouchableOpacity>
             <TouchableOpacity activeOpacity={0.5}>
-
                     <Image source={require('../assets/images/music.png')} style={styles.image}></Image>
-
             </TouchableOpacity>
+                <TouchableOpacity activeOpacity={0.5} onPress={onRemove}>
+                    <Image source={require('../assets/images/close.png')} style={styles.image}></Image>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 }
@@ -119,6 +124,9 @@ const styles = StyleSheet.create({
         flexWrap: "wrap",
         padding:8,
         marginTop:4
+    },
+    btnStyle:{
+        flexDirection: "row"
     },
     buttonStyle:{
         alignItems:'center',
